@@ -26,6 +26,7 @@ Route::get('/', function () {
     ]);
 });
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+Route::get('/about/new', [AboutController::class, 'create'])->name('about.create');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -26,7 +26,9 @@ class AboutController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('About/Create', [
+            'message' => 'Create',
+        ]);
     }
 
     /**
