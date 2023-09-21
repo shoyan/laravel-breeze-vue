@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\PostController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +28,18 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/about/new', [AboutController::class, 'create'])->name('about.create');
 
+// 投稿の更新ページ
+Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+Route::patch('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+
+
 Route::get('/dashboard', function () {
+    $user = Auth::user();
+    var_dump($user->isAdministrator());
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
