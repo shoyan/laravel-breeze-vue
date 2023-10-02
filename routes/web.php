@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserDataController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,9 @@ Route::get('/', function () {
 
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/about/new', [AboutController::class, 'create'])->name('about.create');
+
+// ユーザー一覧ページ
+Route::get('list-users', [UserDataController::class, 'index']);
 
 // 投稿の更新ページ
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
