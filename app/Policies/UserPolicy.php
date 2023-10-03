@@ -31,7 +31,8 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        // 本人しか閲覧できない
+        return $user->id === Auth::id();
     }
 
     /**
